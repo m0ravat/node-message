@@ -1,11 +1,15 @@
 const express = require("express");
+const { body, validationResult } = require("express-validator");
+
 const app = express();
 const path = require("node:path");
+
 
 app.set("views", path.join(__dirname, "Views"));
 app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
+app.use(express.urlencoded({ extended: true }));
 
 const indexRouter = require('./Routes/indexRoutes');
 app.use("/", indexRouter);
