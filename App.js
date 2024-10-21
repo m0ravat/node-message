@@ -7,6 +7,9 @@ app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
+const indexRouter = require('./Routes/indexRoutes');
+app.use("/", indexRouter);
+
 const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`My first Express app - listening on port ${PORT}!`);
