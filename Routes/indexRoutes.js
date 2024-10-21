@@ -1,5 +1,7 @@
 const { Router } = require('express');
 const indexRouter = Router();
+const { body, validationResult } = require('express-validator'); // Add this line to import 'body'
+
 
 const links = [
     { href: "/", text: "Home" },
@@ -24,7 +26,18 @@ indexRouter.get('/new', (req, res) => {
     res.render("form");
 });
 
-indexRouter.post('/new', (req, res) =>{
+indexRouter.post('/new',
+    [
+        body("Username")
+          .trim()
+          .notEmpty()
+          .withMessage("Name can not be empty.")
+          .isAlpha()
+          .isLength({ min: 3 }).withMessage('Username must be at least 3 characters long')
+          .withMessage("Name must only contain alphabet letters."),  
+    ],
+      
+     (req, res) =>{
     const messageUser = req.body.Username; // Matches the 'name' attribute in the form
     const messageText = req.body.Message;  // Matches the 'name' attribute in the for
     messages.push({ text: messageText, user: messageUser, added: new Date() });
