@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title %></title>
 </head>
 <body>
-    <h1>Home Page</h1>
-    <%= title %>
-    <% messages.forEach(message => { %>
-        <li>
-          <strong><%= message.user %>:</strong> <%= message.text %> <br>
-          <em><%= message.added.toLocaleString() %></em>
-        </li>
-      <% }) %>
+    <h1><%= title %></h1>
+    <ul>
+      <% if (users && users.length > 0) { %>
+        <% users.forEach(user => { %>
+          <li>
+            ID: <%= user.id %>, Username: <%= user.username %>, Message: <%= user.message %>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <li>No users found.</li>
+      <% } %>
+    </ul>
+    <nav>
+        <a href="/new">New message</a>
+    </nav>
 </body>
 </html>

@@ -8,12 +8,13 @@
 </head>
 <body>
     <h1>Form</h1>
+    <%- include("errors.ejs") %>
     <form action="/new" method="post">
         <label>User:
-            <input type="text" name="Username" id="">
+            <input type="text" name="username" id="">
         </label> <br>
         <label>Message:
-            <input type="text" name="Message" id="">
+            <input type="text" name="message" id="">
         </label>
         <button type="submit">Submit form</button>
     </form>
